@@ -3,17 +3,14 @@ plugins {
 }
 
 kmpLibrary {
-    namespace = "ru.connect.core.ui"
+    namespace = "ru.connect.welcome.common"
 }
 
 kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(project(":modules:core"))
+            api(project(":modules:core:navigation"))
         }
     }
-}
-
-compose.resources {
-    publicResClass = true
 }

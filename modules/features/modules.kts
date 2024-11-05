@@ -7,4 +7,6 @@ include(
     ":modules:features:feature2:common",
     ":modules:features:splash",
     ":modules:features:splash:common",
+    ":modules:features:welcome",
+    ":modules:features:welcome:common",
 )

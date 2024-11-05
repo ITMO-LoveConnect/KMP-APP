@@ -11,6 +11,7 @@ import ru.connect.feature1.common.Feature1Api
 import ru.connect.feature2.common.Feature2Api
 import ru.connect.main.common.MainFeatureApi
 import ru.connect.splash.common.SplashFeatureApi
+import ru.connect.welcome.common.WelcomeFeatureApi
 
 @Composable
 fun AppNavGraph(
@@ -21,12 +22,14 @@ fun AppNavGraph(
     val feature1 = koinInject<Feature1Api>()
     val feature2 = koinInject<Feature2Api>()
     val splashFeatureApi = koinInject<SplashFeatureApi>()
+    val welcomeFeatureApi = koinInject<WelcomeFeatureApi>()
     val features = remember {
         listOf(
             mainFeature,
             feature1,
             feature2,
             splashFeatureApi,
+            welcomeFeatureApi,
         )
     }
 

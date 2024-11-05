@@ -7,6 +7,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.remember
 import ru.connect.core.ui.theme.ExtendedColors.Companion.LocalExtendedColors
+import ru.connect.core.ui.theme.ExtendedTypography.Companion.LocalExtendedTypography
 
 @Composable
 fun ConnectTheme(
@@ -36,4 +37,9 @@ object ConnectTheme {
         @Composable
         @ReadOnlyComposable
         get() = LocalExtendedColors.current
+
+    val typography: ExtendedTypography
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalExtendedTypography.current
 }

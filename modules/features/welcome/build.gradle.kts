@@ -3,7 +3,7 @@ plugins {
 }
 
 kmpLibrary {
-    namespace = "ru.connect.splash"
+    namespace = "ru.connect.welcome"
 }
 
 kotlin {
@@ -12,7 +12,6 @@ kotlin {
             implementation(project(":modules:core"))
             implementation(project(":modules:core-ui"))
             implementation(project(":modules:core:navigation"))
-            implementation(project(":modules:features:splash:common"))
             implementation(project(":modules:features:welcome:common"))
         }
     }
