@@ -16,6 +16,7 @@ class SplashViewModel : UdfViewModel<Unit, SplashNavigationTarget>(Unit) {
         launchCatching(
             tryBlock = {
                 delay(DEBOUNCE_DELAY)
+                _state.navigateTo(SplashNavigationTarget.WelcomeScreen)
             }, catchBlock = {
                 _state.navigateTo(SplashNavigationTarget.WelcomeScreen)
             }

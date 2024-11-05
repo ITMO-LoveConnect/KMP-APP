@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 data class ExtendedColors(
     val surface: Surface = Surface(),
     val secondaryContainer: Color = Color.Unspecified,
+    val caption: Color = Color.Unspecified,
 ) {
 
     val material: Colors
@@ -40,6 +41,7 @@ data class ExtendedColors(
                 surfaceContainerLowest = surfaceContainerLowest,
             ),
             secondaryContainer = secondaryContainer,
+            caption = Color(0xFF666666)
         )
 
         internal fun provideExtended(): ExtendedColors = Light

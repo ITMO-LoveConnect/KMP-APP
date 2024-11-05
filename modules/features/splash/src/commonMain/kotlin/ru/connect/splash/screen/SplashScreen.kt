@@ -17,11 +17,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import itmo_loveconnect.modules.features.splash.generated.resources.Res
-import itmo_loveconnect.modules.features.splash.generated.resources.itmo_love_connect_logo_big
+import itmo_loveconnect.modules.core_ui.generated.resources.Res
+import itmo_loveconnect.modules.core_ui.generated.resources.itmo_love_connect_logo_big
 import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.painterResource
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
+import ru.connect.core.navigation.FeatureNavigator
+import ru.connect.core.navigation.PopupOptions
+import ru.connect.splash.common.SplashFeatureApi
+import ru.connect.welcome.common.WelcomeFeatureApi
 
 private const val ANIMATE_DELAY = 1_000L
 
@@ -29,12 +34,18 @@ private const val ANIMATE_DELAY = 1_000L
 @Suppress("UnusedPrivateProperty")
 fun SplashScreen(
     viewModel: SplashViewModel = koinViewModel(),
+    featureNavigator: FeatureNavigator = koinInject(),
 ) {
     val uiState = viewModel.state.collectAsState().value
 
     viewModel.handleNavigation { target ->
         when (target) {
-            SplashNavigationTarget.WelcomeScreen -> Unit // :TODO later
+            SplashNavigationTarget.WelcomeScreen -> featureNavigator.navigate(
+                WelcomeFeatureApi.Companion.WelcomeFeatureDestination,
+                popupOptions = PopupOptions(SplashFeatureApi.Companion.SplashFeatureTabDestination) {
+                    inclusive = true
+                }
+            )
             SplashNavigationTarget.MainScreen -> Unit // :TODO later
         }
     }

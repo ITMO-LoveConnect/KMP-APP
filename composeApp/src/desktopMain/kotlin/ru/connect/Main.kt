@@ -7,7 +7,7 @@ fun main() = application {
     initKoin()
     Window(
         onCloseRequest = ::exitApplication,
-        title = "connect App",
+        title = "ITMO LoveConnect",
     ) {
         App()
     }

@@ -2,11 +2,11 @@ package ru.connect.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFF4D5C92)
+val primaryLight = Color(0xFFFF0F7B)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFFDCE1FF)
 val onPrimaryContainerLight = Color(0xFF04164B)
-val secondaryLight = Color(0xFF595D72)
+val secondaryLight = Color(0xFFF89B29)
 val onSecondaryLight = Color(0xFFFFFFFF)
 val secondaryContainerLight = Color(0xFFDEE1F9)
 val onSecondaryContainerLight = Color(0xFF161B2C)
