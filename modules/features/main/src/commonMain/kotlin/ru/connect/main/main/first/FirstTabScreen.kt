@@ -17,12 +17,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import itmo_loveconnect.modules.features.main.generated.resources.Res
+import itmo_loveconnect.modules.features.main.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource
 import org.koin.compose.koinInject
 import ru.connect.core.navigation.FeatureNavigator
 import ru.connect.feature1.common.Feature1Api
-import itmo_loveconnect.modules.features.main.generated.resources.Res
-import itmo_loveconnect.modules.features.main.generated.resources.compose_multiplatform
 
 @Composable
 internal fun FirstTabScreen(

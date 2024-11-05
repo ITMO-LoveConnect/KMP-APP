@@ -10,6 +10,7 @@ import ru.connect.domain.DomainKoinModule
 import ru.connect.feature1.Feature1Module
 import ru.connect.feature1.Feature2Module
 import ru.connect.main.FeatureMainModule
+import ru.connect.splash.SplashFeatureKoinModule
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
     startKoin {
@@ -18,6 +19,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
             AppModule().module,
             Feature1Module().module,
             Feature2Module().module,
+            SplashFeatureKoinModule().module,
             FeatureMainModule().module,
             DataKoinModule().module,
             DomainKoinModule().module,

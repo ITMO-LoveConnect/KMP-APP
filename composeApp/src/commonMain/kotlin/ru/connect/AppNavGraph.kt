@@ -10,6 +10,7 @@ import ru.connect.core.navigation.extension.register
 import ru.connect.feature1.common.Feature1Api
 import ru.connect.feature2.common.Feature2Api
 import ru.connect.main.common.MainFeatureApi
+import ru.connect.splash.common.SplashFeatureApi
 
 @Composable
 fun AppNavGraph(
@@ -19,17 +20,19 @@ fun AppNavGraph(
     val mainFeature = koinInject<MainFeatureApi>()
     val feature1 = koinInject<Feature1Api>()
     val feature2 = koinInject<Feature2Api>()
+    val splashFeatureApi = koinInject<SplashFeatureApi>()
     val features = remember {
         listOf(
             mainFeature,
             feature1,
             feature2,
+            splashFeatureApi,
         )
     }
 
     NavHost(
         navController = navController,
-        startDestination = MainFeatureApi.MAIN_ROUTE,
+        startDestination = SplashFeatureApi.Companion.SplashFeatureTabDestination::class,
     ) {
         features.forEach { feature ->
             register(
