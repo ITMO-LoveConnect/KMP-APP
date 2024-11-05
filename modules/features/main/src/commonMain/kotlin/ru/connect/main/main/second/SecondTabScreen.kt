@@ -13,9 +13,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.painterResource
 import itmo_loveconnect.modules.features.main.generated.resources.Res
 import itmo_loveconnect.modules.features.main.generated.resources.compose_multiplatform
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 internal fun SecondTabScreen() {
