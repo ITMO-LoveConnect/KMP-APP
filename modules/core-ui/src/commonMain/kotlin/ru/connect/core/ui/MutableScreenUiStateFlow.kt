@@ -6,14 +6,17 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import ru.connect.core.ui.error.UiError
 
 class MutableScreenUiStateFlow<Ui, Nav>(
     model: Ui,
     navigationEvents: List<Nav> = emptyList(),
+    alertErrors: List<UiError.SnackBar> = emptyList(),
 ) : MutableStateFlow<UiState<Ui, Nav>> by MutableStateFlow(
     UiState(
         model = model,
         navigationEvents = navigationEvents,
+        alertErrors = alertErrors,
     )
 ) {
 
@@ -45,5 +48,17 @@ class MutableScreenUiStateFlow<Ui, Nav>(
             navigate(value.navigationEvents.first())
             update { copy(navigationEvents = navigationEvents.drop(1)) }
         }
+    }
+
+    suspend fun showAlertError(error: UiError.SnackBar) = showAlertError(listOf(error))
+
+    suspend fun showAlertError(errors: List<UiError.SnackBar>) = lock.withLock {
+        value = value.copy(
+            alertErrors = value.alertErrors + errors.filterNot { value.alertErrors.contains(it) }
+        )
+    }
+
+    suspend fun handleErrorAlertClose() {
+        update { copy(alertErrors = alertErrors.consumeAlert()) }
     }
 }

@@ -41,7 +41,7 @@ fun SplashScreen(
     viewModel.handleNavigation { target ->
         when (target) {
             SplashNavigationTarget.WelcomeScreen -> featureNavigator.navigate(
-                WelcomeFeatureApi.Companion.WelcomeFeatureDestination,
+                WelcomeFeatureApi.Companion.WelcomeFeatureGraphDestination,
                 popupOptions = PopupOptions(SplashFeatureApi.Companion.SplashFeatureTabDestination) {
                     inclusive = true
                 }

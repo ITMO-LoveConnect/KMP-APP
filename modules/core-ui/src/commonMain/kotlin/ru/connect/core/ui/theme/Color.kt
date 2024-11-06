@@ -2,7 +2,7 @@ package ru.connect.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val primaryLight = Color(0xFFFF0F7B)
+val primaryLight = Color(0xFFE21870)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFFDCE1FF)
 val onPrimaryContainerLight = Color(0xFF04164B)
@@ -20,7 +20,7 @@ val errorContainerLight = Color(0xFFFFDAD6)
 val onErrorContainerLight = Color(0xFF410002)
 val backgroundLight = Color(0xFFFFFFFF)
 val onBackgroundLight = Color(0xFF1A1B21)
-val surfaceLight = Color(0xFFFAF8FF)
+val surfaceLight = Color(0xFF1a110f)
 val surfaceContainerHighest = Color(0xFFDFE3E7)
 val surfaceContainerHigh = Color(0xFFE4E9EC)
 val surfaceContainer = Color(0xFFEAEEF2)

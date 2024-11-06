@@ -28,13 +28,14 @@ import ru.connect.core.ui.theme.ConnectTheme
 @Composable
 @Suppress("UnusedPrivateProperty")
 fun WelcomeScreen(
+    onLoginScreenNavigate: () -> Unit,
     viewModel: WelcomeViewModel = koinViewModel(),
 ) {
 
     val uiState = viewModel.state.collectAsState().value
     viewModel.handleNavigation { target ->
         when (target) {
-            WelcomeNavigationTarget.LoginScreenDestination -> Unit
+            WelcomeNavigationTarget.LoginScreenDestination -> onLoginScreenNavigate()
         }
     }
 
