@@ -9,4 +9,6 @@ include(
     ":modules:features:splash:common",
     ":modules:features:welcome",
     ":modules:features:welcome:common",
+    ":modules:features:profile",
+    ":modules:features:profile:common",
 )

@@ -10,6 +10,7 @@ import ru.connect.core.navigation.extension.register
 import ru.connect.feature1.common.Feature1Api
 import ru.connect.feature2.common.Feature2Api
 import ru.connect.main.common.MainFeatureApi
+import ru.connect.profile.common.ProfileFeatureApi
 import ru.connect.splash.common.SplashFeatureApi
 import ru.connect.welcome.common.WelcomeFeatureApi
 
@@ -23,6 +24,7 @@ fun AppNavGraph(
     val feature2 = koinInject<Feature2Api>()
     val splashFeatureApi = koinInject<SplashFeatureApi>()
     val welcomeFeatureApi = koinInject<WelcomeFeatureApi>()
+    val profileFeatureApi = koinInject<ProfileFeatureApi>()
     val features = remember {
         listOf(
             mainFeature,
@@ -30,6 +32,7 @@ fun AppNavGraph(
             feature2,
             splashFeatureApi,
             welcomeFeatureApi,
+            profileFeatureApi,
         )
     }
 

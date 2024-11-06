@@ -34,16 +34,22 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
+import ru.connect.core.navigation.FeatureNavigator
+import ru.connect.core.navigation.PopupOptions
 import ru.connect.core.ui.buttons.ProgressButton
 import ru.connect.core.ui.extensions.maxFullScreenWidth
 import ru.connect.core.ui.snackbar.SnackBarComponent
 import ru.connect.core.ui.theme.ConnectTheme
+import ru.connect.profile.common.ProfileFeatureApi
+import ru.connect.welcome.screen.WelcomeFeatureScreenDestination
 
 @Composable
 internal fun OtpEnterScreen(
     onNavigateUp: () -> Unit,
     viewModel: OtpEnterViewModel = koinViewModel(),
+    featureNavigator: FeatureNavigator = koinInject(),
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val uiState = viewModel.state.collectAsState().value
@@ -51,6 +57,15 @@ internal fun OtpEnterScreen(
     viewModel.handleNavigation { target ->
         when (target) {
             OtpEnterNavigationTarget.Back -> onNavigateUp()
+            OtpEnterNavigationTarget.CreateProfile -> featureNavigator.navigate(
+                destination = ProfileFeatureApi.Companion.ProfileFeatureGraphDestination,
+                popupOptions = PopupOptions(
+                    popupToRoute = WelcomeFeatureScreenDestination,
+                    options = {
+                        inclusive = false
+                    },
+                )
+            )
         }
     }
 

@@ -3,7 +3,7 @@ plugins {
 }
 
 kmpLibrary {
-    namespace = "ru.connect.welcome"
+    namespace = "ru.connect.profile"
 }
 
 kotlin {
@@ -12,7 +12,6 @@ kotlin {
             implementation(project(":modules:core"))
             implementation(project(":modules:core-ui"))
             implementation(project(":modules:core:navigation"))
-            implementation(project(":modules:features:welcome:common"))
             implementation(project(":modules:features:profile:common"))
             implementation(project(":modules:domain"))
         }
