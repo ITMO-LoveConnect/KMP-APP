@@ -6,7 +6,7 @@ import ru.connect.core.ui.UdfViewModel
 import ru.connect.core.ui.error.UiError
 import ru.connect.domain.auth.AuthRepository
 
-@KoinViewModel
+@KoinViewModel(binds = [])
 internal class EmailEnterViewModel(
     private val authRepository: AuthRepository,
 ) : UdfViewModel<EmailEnterUi, EmailEnterNavigationTarget>(EmailEnterUi()) {

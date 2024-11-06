@@ -25,8 +25,10 @@ class MutableScreenUiStateFlow<Ui, Nav>(
 
     suspend fun getUi() = lock.withLock { value.model }
 
-    suspend inline fun update(action: UiState<Ui, Nav>.() -> UiState<Ui, Nav>) = lock.withLock {
-        value = value.action()
+    fun update(action: UiState<Ui, Nav>.() -> UiState<Ui, Nav>) = scope.launch {
+        lock.withLock {
+            value = value.action()
+        }
     }
 
     fun navigateTo(target: Nav) = scope.launch {

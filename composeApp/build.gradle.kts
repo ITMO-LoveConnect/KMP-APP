@@ -99,6 +99,8 @@ kotlin {
             implementation(project(":modules:features:splash:common"))
             implementation(project(":modules:features:welcome"))
             implementation(project(":modules:features:welcome:common"))
+            implementation(project(":modules:features:profile"))
+            implementation(project(":modules:features:profile:common"))
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

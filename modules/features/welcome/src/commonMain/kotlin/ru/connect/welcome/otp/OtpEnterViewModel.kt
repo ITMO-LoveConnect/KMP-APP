@@ -6,12 +6,12 @@ import org.koin.android.annotation.KoinViewModel
 import ru.connect.core.extensions.launchCatching
 import ru.connect.core.ui.UdfViewModel
 import ru.connect.core.ui.error.UiError
-import ru.connect.domain.auth.AuthRepository
+import ru.connect.domain.auth.AuthInteractor
 
-@KoinViewModel
+@KoinViewModel(binds = [])
 internal class OtpEnterViewModel(
     savedStateHandle: SavedStateHandle,
-    private val authRepository: AuthRepository,
+    private val authInteractor: AuthInteractor,
 ) : UdfViewModel<OtpEnterUi, OtpEnterNavigationTarget>(
     OtpEnterUi(
         email = with(getArgs(savedStateHandle).isuNumber) {
@@ -38,7 +38,13 @@ internal class OtpEnterViewModel(
         launchCatching(
             tryBlock = {
                 _state.updateUi { copy(isButtonInProgress = true) }
-                authRepository.sendOtpCode(isuNumber, otpCode)
+                val session = authInteractor.sendOtpCode(isuNumber, otpCode)
+
+                if (session.isNewUser) {
+                    _state.navigateTo(OtpEnterNavigationTarget.CreateProfile)
+                } else {
+                    // :TODO
+                }
             }, catchBlock = { throwable ->
                 showAlertError(UiError.SnackBar.Default(message = "Извините, что-то пошло не так"))
             }, finalBlock = {
