@@ -7,6 +7,6 @@ interface WelcomeFeatureApi : FeatureApi {
 
     companion object {
         @Serializable
-        data object WelcomeFeatureDestination
+        data object WelcomeFeatureGraphDestination
     }
 }

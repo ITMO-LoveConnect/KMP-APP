@@ -13,6 +13,7 @@ kotlin {
             implementation(project(":modules:core-ui"))
             implementation(project(":modules:core:navigation"))
             implementation(project(":modules:features:welcome:common"))
+            implementation(project(":modules:domain"))
         }
     }
 }
