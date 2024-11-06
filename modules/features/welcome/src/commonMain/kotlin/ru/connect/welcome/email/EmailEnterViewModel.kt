@@ -28,6 +28,7 @@ internal class EmailEnterViewModel(
             tryBlock = {
                 _state.updateUi { copy(isButtonInProgress = true) }
                 authRepository.sendIsuNumber(isuNumber)
+                _state.navigateTo(EmailEnterNavigationTarget.OtpScreenTarget(isuNumber))
             }, catchBlock = { throwable ->
                 showAlertError(UiError.SnackBar.Default(message = "Извините, что-то пошло не так"))
             }, finalBlock = {

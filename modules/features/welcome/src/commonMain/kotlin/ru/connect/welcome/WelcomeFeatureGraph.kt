@@ -9,6 +9,8 @@ import org.koin.core.annotation.Singleton
 import ru.connect.welcome.common.WelcomeFeatureApi
 import ru.connect.welcome.email.EmailEnterScreen
 import ru.connect.welcome.email.EmailEnterScreenDestination
+import ru.connect.welcome.otp.OtpEnterScreen
+import ru.connect.welcome.otp.OtpEnterScreenDestination
 import ru.connect.welcome.screen.WelcomeFeatureScreenDestination
 import ru.connect.welcome.screen.WelcomeScreen
 
@@ -25,6 +27,12 @@ class WelcomeFeatureGraph : WelcomeFeatureApi {
             }
             composable<EmailEnterScreenDestination> {
                 EmailEnterScreen(
+                    onNavigateUp = { navController.navigateUp() },
+                    onOtpScreenNavigate = { isuNumber -> navController.navigate(OtpEnterScreenDestination(isuNumber)) },
+                )
+            }
+            composable<OtpEnterScreenDestination> {
+                OtpEnterScreen(
                     onNavigateUp = { navController.navigateUp() }
                 )
             }

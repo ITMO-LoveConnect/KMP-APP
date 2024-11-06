@@ -1,4 +1,4 @@
-package ru.connect.welcome.email
+package ru.connect.welcome.otp
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.OutlinedTextField
@@ -29,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
@@ -39,18 +41,16 @@ import ru.connect.core.ui.snackbar.SnackBarComponent
 import ru.connect.core.ui.theme.ConnectTheme
 
 @Composable
-internal fun EmailEnterScreen(
+internal fun OtpEnterScreen(
     onNavigateUp: () -> Unit,
-    onOtpScreenNavigate: (String) -> Unit,
-    viewModel: EmailEnterViewModel = koinViewModel(),
+    viewModel: OtpEnterViewModel = koinViewModel(),
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val uiState = viewModel.state.collectAsState().value
     val ui = uiState.model
     viewModel.handleNavigation { target ->
         when (target) {
-            EmailEnterNavigationTarget.Back -> onNavigateUp()
-            is EmailEnterNavigationTarget.OtpScreenTarget -> onOtpScreenNavigate(target.isuNumber)
+            OtpEnterNavigationTarget.Back -> onNavigateUp()
         }
     }
 
@@ -98,7 +98,7 @@ internal fun EmailEnterScreen(
 
 @Composable
 private fun Content(
-    ui: EmailEnterUi,
+    ui: OtpEnterUi,
     onSendButtonClick: () -> Unit,
     onIsuNumberChanged: (String) -> Unit,
 ) {
@@ -118,11 +118,14 @@ private fun Content(
             ) {
                 Text(
                     text = buildAnnotatedString {
-                        append("Пожалуйста, введите ваш табельный номер ИСУ. На адрес электронной почты ")
+                        append("Пожалуйста, введите код подтверждения, который придет к вам на почту ")
                         withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                            append("<Номер_ИСУ>@niuitmo.ru")
+                            append(ui.email)
                         }
-                        append(" будет отправлен код подтверждения для дальнейших действий.")
+                        append(
+                            ". \nЕсли письма нет во входящих, то рекомендуем проверить СПАМ или " +
+                                    "попробовать войти позже. \nЛюбовь подождет ❤\uFE0F"
+                        )
                     }
                 )
             }
@@ -132,21 +135,23 @@ private fun Content(
 
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
-            value = ui.isuNumber,
-            label = { Text("Номер ИСУ") },
+            value = ui.otpCode,
+            label = { Text("Код подтверждения") },
             onValueChange = onIsuNumberChanged,
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 backgroundColor = ConnectTheme.colors.surface.surfaceContainer,
                 disabledPlaceholderColor = Color.Black,
                 unfocusedLabelColor = ConnectTheme.colors.caption,
-
-                ),
+            ),
             singleLine = true,
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Number,
+            )
         )
 
         Spacer(modifier = Modifier.weight(1f))
         ProgressButton(
-            text = "Отправить номер ИСУ",
+            text = "Войти",
             modifier = Modifier.fillMaxWidth(),
             onClick = onSendButtonClick,
             enabled = ui.isButtonEnabled,
