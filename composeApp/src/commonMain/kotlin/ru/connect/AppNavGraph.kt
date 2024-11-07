@@ -9,7 +9,7 @@ import org.koin.compose.koinInject
 import ru.connect.core.navigation.extension.register
 import ru.connect.feature1.common.Feature1Api
 import ru.connect.feature2.common.Feature2Api
-import ru.connect.main.common.MainFeatureApi
+import ru.connect.main.common.MainGraphFeatureApi
 import ru.connect.profile.common.ProfileFeatureApi
 import ru.connect.splash.common.SplashFeatureApi
 import ru.connect.welcome.common.WelcomeFeatureApi
@@ -19,7 +19,7 @@ fun AppNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController,
 ) {
-    val mainFeature = koinInject<MainFeatureApi>()
+    val mainFeature = koinInject<MainGraphFeatureApi>()
     val feature1 = koinInject<Feature1Api>()
     val feature2 = koinInject<Feature2Api>()
     val splashFeatureApi = koinInject<SplashFeatureApi>()

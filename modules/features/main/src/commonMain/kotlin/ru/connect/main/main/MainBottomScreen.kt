@@ -20,6 +20,7 @@ import ru.connect.main.main.first.FirstTabNavigationApi
 import ru.connect.main.main.models.BottomTabs
 import ru.connect.main.main.navigation.BottomNavGraph
 import ru.connect.main.main.second.SecondTabNavigationApi
+import ru.connect.main.main.third.ThirdTabNavigationApi
 
 @Composable
 internal fun MainBottomScreen(
@@ -43,6 +44,16 @@ internal fun MainBottomScreen(
             )
             MainBottomNavigationTarget.SecondTabTarget -> navController.navigate(
                 SecondTabNavigationApi.Companion.SecondTabDestination,
+                navOptions = navOptions {
+                    popUpTo(navController.graph.startDestinationRoute.orEmpty()) {
+                        saveState = true
+                    }
+                    launchSingleTop = true
+                    restoreState = true
+                }
+            )
+            MainBottomNavigationTarget.ThirdTabTarget -> navController.navigate(
+                ThirdTabNavigationApi.Companion.ThirdTabScreenDestination,
                 navOptions = navOptions {
                     popUpTo(navController.graph.startDestinationRoute.orEmpty()) {
                         saveState = true

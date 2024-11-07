@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import org.koin.compose.koinInject
 import ru.connect.core.navigation.extension.register
 import ru.connect.main.main.first.FirstTabNavigationApi
-import ru.connect.main.main.second.SecondTabNavigationApi
+import ru.connect.main.main.third.ThirdTabNavigationApi
 
 @Composable
 fun BottomNavGraph(
@@ -15,7 +15,7 @@ fun BottomNavGraph(
     navController: NavHostController,
 ) {
     val firstTabFeature = koinInject<FirstTabNavigationApi>()
-    val secondTabFeature = koinInject<SecondTabNavigationApi>()
+    val secondTabFeature = koinInject<ThirdTabNavigationApi>()
     NavHost(
         navController = navController,
         startDestination = FirstTabNavigationApi.Companion.FirstTabDestination::class,

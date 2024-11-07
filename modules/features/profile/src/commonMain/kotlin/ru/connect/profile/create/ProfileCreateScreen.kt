@@ -66,10 +66,13 @@ import com.mohamedrejeb.calf.picker.FilePickerFileType
 import com.mohamedrejeb.calf.picker.FilePickerSelectionMode
 import com.mohamedrejeb.calf.picker.rememberFilePickerLauncher
 import kotlinx.coroutines.launch
+import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 import ru.connect.core.extensions.onError
 import ru.connect.core.extensions.onLoading
 import ru.connect.core.extensions.onSuccess
+import ru.connect.core.navigation.FeatureNavigator
+import ru.connect.core.navigation.PopupOptions
 import ru.connect.core.ui.buttons.ProgressButton
 import ru.connect.core.ui.error.ErrorScreen
 import ru.connect.core.ui.extensions.maxFullScreenWidth
@@ -77,11 +80,14 @@ import ru.connect.core.ui.loading.CircularProgressIndicatorLoadingScreen
 import ru.connect.core.ui.snackbar.SnackBarComponent
 import ru.connect.core.ui.theme.ConnectTheme
 import ru.connect.domain.tag.models.TagCategory
+import ru.connect.main.common.MainGraphFeatureApi
+import ru.connect.splash.common.SplashFeatureApi
 
 @Composable
 fun ProfileCreateScreen(
     onNavigateUp: () -> Unit,
     viewModel: ProfileCreateViewModel = koinViewModel(),
+    featureNavigator: FeatureNavigator = koinInject(),
 ) {
     val snackbarHostState = remember { SnackbarHostState() }
     val uiState = viewModel.state.collectAsState().value
@@ -89,6 +95,12 @@ fun ProfileCreateScreen(
     viewModel.handleNavigation { target ->
         when (target) {
             ProfileCreateNavigationTarget.Back -> onNavigateUp()
+            ProfileCreateNavigationTarget.MainScreen -> featureNavigator.navigate(
+                MainGraphFeatureApi.Companion.MainGraphFeatureDestination,
+                popupOptions = PopupOptions(SplashFeatureApi.Companion.SplashFeatureTabDestination) {
+                    inclusive = true
+                }
+            )
         }
     }
 
