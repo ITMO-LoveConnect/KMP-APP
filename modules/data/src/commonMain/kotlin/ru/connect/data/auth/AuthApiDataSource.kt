@@ -19,6 +19,7 @@ class AuthApiDataSource : AuthDataSource {
         delay(500L)
 
         return Session(
+            userId = "307455",
             token = "token",
             isNewUser = true,
             userIsuProfile = UserIsuProfile(

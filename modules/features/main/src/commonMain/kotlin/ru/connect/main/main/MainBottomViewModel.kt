@@ -19,6 +19,7 @@ internal class MainBottomViewModel : UdfViewModel<MainBottomUi, MainBottomNaviga
             when (bottomTab) {
                 BottomTabs.FIRST_TAB -> MainBottomNavigationTarget.FirstTabTarget
                 BottomTabs.SECOND_TAB -> MainBottomNavigationTarget.SecondTabTarget
+                BottomTabs.THIRD_TAB -> MainBottomNavigationTarget.ThirdTabTarget
             }.also(_state::navigateTo)
         }
     }

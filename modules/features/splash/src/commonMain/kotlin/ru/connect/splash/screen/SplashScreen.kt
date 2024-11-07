@@ -25,6 +25,7 @@ import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
 import ru.connect.core.navigation.FeatureNavigator
 import ru.connect.core.navigation.PopupOptions
+import ru.connect.main.common.MainGraphFeatureApi
 import ru.connect.splash.common.SplashFeatureApi
 import ru.connect.welcome.common.WelcomeFeatureApi
 
@@ -46,7 +47,12 @@ fun SplashScreen(
                     inclusive = true
                 }
             )
-            SplashNavigationTarget.MainScreen -> Unit // :TODO later
+            SplashNavigationTarget.MainScreen -> featureNavigator.navigate(
+                MainGraphFeatureApi.Companion.MainGraphFeatureDestination,
+                popupOptions = PopupOptions(SplashFeatureApi.Companion.SplashFeatureTabDestination) {
+                    inclusive = true
+                }
+            )
         }
     }
 

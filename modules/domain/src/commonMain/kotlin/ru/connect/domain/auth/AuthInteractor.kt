@@ -19,12 +19,17 @@ class AuthInteractor(
 ) {
     suspend fun sendOtpCode(isuNumber: String, otpCode: String): Session =
         authRepository.sendOtpCode(isuNumber, otpCode).also { session ->
-            sessionRepository.set(session.userIsuProfile)
+            sessionRepository.set(session)
         }
 
-    suspend fun getProfile(): UserIsuProfile = sessionRepository.get()
+    suspend fun getProfile(): UserIsuProfile = sessionRepository.get().userIsuProfile
 
     suspend fun getTags(): List<TagEntity> = tagsRepository.fetch(Unit, CachePolicy.ALWAYS).orEmpty()
 
-    suspend fun updateProfile(request: UserEditProfile) = profileRepository.updateProfile(request)
+    suspend fun updateProfile(request: UserEditProfile) = profileRepository.updateProfile(request).also {
+        val session = sessionRepository.get()
+        authRepository.saveSession(session.userId, session.token)
+    }
+
+    suspend fun isContainsAuthData() = authRepository.isContainsAuthData()
 }

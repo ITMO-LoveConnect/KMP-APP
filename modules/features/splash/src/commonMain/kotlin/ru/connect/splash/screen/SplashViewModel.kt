@@ -4,9 +4,12 @@ import kotlinx.coroutines.delay
 import org.koin.android.annotation.KoinViewModel
 import ru.connect.core.extensions.launchCatching
 import ru.connect.core.ui.UdfViewModel
+import ru.connect.domain.auth.AuthInteractor
 
 @KoinViewModel(binds = [])
-class SplashViewModel : UdfViewModel<Unit, SplashNavigationTarget>(Unit) {
+class SplashViewModel(
+    private val authInteractor: AuthInteractor,
+) : UdfViewModel<Unit, SplashNavigationTarget>(Unit) {
 
     init {
         checkToken()
@@ -16,7 +19,11 @@ class SplashViewModel : UdfViewModel<Unit, SplashNavigationTarget>(Unit) {
         launchCatching(
             tryBlock = {
                 delay(DEBOUNCE_DELAY)
-                _state.navigateTo(SplashNavigationTarget.WelcomeScreen)
+                if (authInteractor.isContainsAuthData()) {
+                    _state.navigateTo(SplashNavigationTarget.MainScreen)
+                } else {
+                    _state.navigateTo(SplashNavigationTarget.WelcomeScreen)
+                }
             }, catchBlock = {
                 _state.navigateTo(SplashNavigationTarget.WelcomeScreen)
             }

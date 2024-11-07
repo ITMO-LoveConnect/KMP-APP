@@ -30,7 +30,8 @@ import ru.connect.core.ui.theme.ConnectTheme
 fun WelcomeScreen(
     onLoginScreenNavigate: () -> Unit,
     viewModel: WelcomeViewModel = koinViewModel(),
-) {
+
+    ) {
 
     val uiState = viewModel.state.collectAsState().value
     viewModel.handleNavigation { target ->

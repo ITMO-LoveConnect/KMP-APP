@@ -207,6 +207,7 @@ class ProfileCreateViewModel(
                     images = images,
                 )
                 authInteractor.updateProfile(request)
+                _state.navigateTo(ProfileCreateNavigationTarget.MainScreen)
             }, finalBlock = {
                 _state.updateUi { copy { ui -> ui.copy(isButtonInProgress = false) } }
             }
