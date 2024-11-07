@@ -38,14 +38,17 @@ internal class OtpEnterViewModel(
         launchCatching(
             tryBlock = {
                 _state.updateUi { copy(isButtonInProgress = true) }
-                val session = authInteractor.sendOtpCode(isuNumber, otpCode)
+                val isRegistered = authInteractor.isRegistered(isuNumber)
 
-                if (session.isNewUser) {
+                if (!isRegistered) {
+                    authInteractor.requestProfilledProfile(isuNumber, otpCode)
                     _state.navigateTo(OtpEnterNavigationTarget.CreateProfile)
                 } else {
-                    // :TODO
+                    authInteractor.login(isuNumber, otpCode)
+                    _state.navigateTo(OtpEnterNavigationTarget.MainScreen)
                 }
             }, catchBlock = { throwable ->
+                throwable.printStackTrace()
                 showAlertError(UiError.SnackBar.Default(message = "Извините, что-то пошло не так"))
             }, finalBlock = {
                 _state.updateUi { copy(isButtonInProgress = false) }

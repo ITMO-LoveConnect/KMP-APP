@@ -20,6 +20,7 @@ import ru.connect.core.ui.UdfViewModel
 import ru.connect.domain.auth.AuthInteractor
 import ru.connect.domain.auth.models.DatingPurpose
 import ru.connect.domain.auth.models.Gender
+import ru.connect.domain.auth.models.RegisterModel
 import ru.connect.domain.auth.models.UserEditProfile
 import ru.connect.domain.tag.models.TagCategory
 import ru.connect.domain.tag.models.TagEntity
@@ -53,12 +54,12 @@ class ProfileCreateViewModel(
         launchCatching(
             tryBlock = {
                 _state.updateUi { loading() }
-                val profile = authInteractor.getProfile()
+                val profile = authInteractor.requestProfilledProfileBase()
                 val tags = tags.await()
 
                 _state.updateUi {
                     ProfileCreateUi(
-                        name = profile.name,
+                        name = profile.fullName,
                         gender = when (profile.gender) {
                             Gender.MALE -> "Мужской"
                             Gender.FEMALE -> "Женский"
@@ -200,13 +201,21 @@ class ProfileCreateViewModel(
         launchCatching(
             tryBlock = {
                 _state.updateUi { copy { ui -> ui.copy(isButtonInProgress = true) } }
-                val request = UserEditProfile(
-                    purpose = purpose,
-                    birthday = requireNotNull(birthday),
-                    tagsIds = selectedTags.map { it.uuid },
-                    images = images,
+                val pair = authInteractor.getPairsIsuOtp()
+                val profile = authInteractor.requestProfilledProfileBase()
+                val request = RegisterModel(
+                    isuNumber = pair.first,
+                    confirmationCode = pair.second.toLong(),
+                    profile = UserEditProfile(
+                        name = profile.fullName,
+                        faculty = profile.faculty,
+                        datingPurpose = DatingPurpose.FRIENDSHIP,
+                        birthday = requireNotNull(birthday),
+                        tagsIds = emptyList(),
+                        gender = Gender.MALE,
+                    ),
                 )
-                authInteractor.updateProfile(request)
+                authInteractor.register(request)
                 _state.navigateTo(ProfileCreateNavigationTarget.MainScreen)
             }, finalBlock = {
                 _state.updateUi { copy { ui -> ui.copy(isButtonInProgress = false) } }

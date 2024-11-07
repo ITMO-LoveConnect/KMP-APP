@@ -8,6 +8,6 @@ interface LocalMemoryDataSource {
 
     suspend fun isContainsAuthData(): Boolean
 
-    suspend fun getPinKey(): String
+    suspend fun getToken(): String
     suspend fun getUserId(): String
 }

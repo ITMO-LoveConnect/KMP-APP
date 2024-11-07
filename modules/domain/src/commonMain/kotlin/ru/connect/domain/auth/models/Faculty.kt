@@ -4,6 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Faculty(
-    val uuid: String,
+    val id: String,
     val shortName: String,
 )

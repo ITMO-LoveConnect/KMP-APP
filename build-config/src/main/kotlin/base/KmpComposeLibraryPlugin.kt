@@ -123,6 +123,7 @@ class KmpComposeLibraryPlugin : Plugin<Project> {
                     implementation(libs.findLibrary("stately-concurrent-collections").get())
                     implementation("com.mohamedrejeb.calf:calf-file-picker:0.5.5")
                     implementation("io.coil-kt.coil3:coil-compose:3.0.0")
+                    implementation("io.coil-kt.coil3:coil-network-ktor3:3.0.0")
                 }
             }
 

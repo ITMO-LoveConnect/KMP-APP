@@ -21,7 +21,7 @@ class LocalMemoryDataSourceImpl(
         settings.remove(TOKEN)
     }
 
-    override suspend fun getPinKey(): String = settings[TOKEN]!!
+    override suspend fun getToken(): String = settings[TOKEN]!!
     override suspend fun getUserId(): String = settings[USER_ID]!!
 
     override suspend fun isContainsAuthData(): Boolean = settings.contains(USER_ID) && settings.contains(TOKEN)

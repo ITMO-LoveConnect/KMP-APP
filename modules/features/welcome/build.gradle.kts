@@ -14,6 +14,7 @@ kotlin {
             implementation(project(":modules:core:navigation"))
             implementation(project(":modules:features:welcome:common"))
             implementation(project(":modules:features:profile:common"))
+            implementation(project(":modules:features:main:common"))
             implementation(project(":modules:domain"))
         }
     }

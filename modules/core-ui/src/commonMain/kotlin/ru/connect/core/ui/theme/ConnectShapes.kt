@@ -16,7 +16,8 @@ object ConnectShapes {
     val RoundedCornerShape10 = RoundedCornerShape(10.dp)
     val RoundedCornerShape12 = RoundedCornerShape(12.dp)
     val RoundedCornerShape16 = RoundedCornerShape(16.dp)
-    val RoundedCornerShape24 = RoundedCornerShape(24.dp)
+    val RoundedCornerShape24 = RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)
+    val RoundedCornerShape50 = RoundedCornerShape(50.dp)
     val RoundedCornerShape50p = RoundedCornerShape(50)
     val TopFullyRoundedCorners = RoundedCornerShape(topStartPercent = 100, topEndPercent = 100)
 

@@ -1,4 +1,4 @@
-package ru.connect.main.main.third
+package ru.connect.main.main.first
 
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
@@ -8,17 +8,17 @@ import kotlinx.serialization.Serializable
 import org.koin.core.annotation.Singleton
 import ru.connect.core.navigation.FeatureApi
 
-@Singleton
-class ThirdTabNavigationApi : FeatureApi {
+@Singleton(binds = [])
+class LikeMathTabNavigationApi : FeatureApi {
 
     override fun registerGraph(navGraphBuilder: NavGraphBuilder, navController: NavHostController, modifier: Modifier) {
-        navGraphBuilder.composable<ThirdTabScreenDestination> {
-            ThirdTabScreen()
+        navGraphBuilder.composable<LikeMathTabDestination> {
+            LikeMathTabScreen()
         }
     }
 
     companion object {
         @Serializable
-        data object ThirdTabScreenDestination
+        data object LikeMathTabDestination
     }
 }

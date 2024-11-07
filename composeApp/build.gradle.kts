@@ -82,6 +82,8 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.stately.concurrency)
             implementation(libs.stately.concurrent.collections)
+            implementation("io.coil-kt.coil3:coil-compose:3.0.0")
+            implementation("io.coil-kt.coil3:coil-network-ktor3:3.0.0")
 
             // Modules
             implementation(project(":modules:core"))

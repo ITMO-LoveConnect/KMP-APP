@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import coil3.compose.setSingletonImageLoaderFactory
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
@@ -16,6 +17,9 @@ import ru.connect.core.ui.theme.ConnectTheme
 @Preview
 fun App() {
     ConnectTheme {
+        setSingletonImageLoaderFactory { context ->
+            getAsyncImageLoader(context)
+        }
         CompositionLocalProvider(LocalNavController provides rememberNavController()) {
             val rootNavController = LocalNavController.current
             loadKoinModules(

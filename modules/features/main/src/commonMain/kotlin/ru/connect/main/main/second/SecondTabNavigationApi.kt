@@ -8,12 +8,12 @@ import kotlinx.serialization.Serializable
 import org.koin.core.annotation.Singleton
 import ru.connect.core.navigation.FeatureApi
 
-@Singleton
+@Singleton(binds = [])
 class SecondTabNavigationApi : FeatureApi {
 
     override fun registerGraph(navGraphBuilder: NavGraphBuilder, navController: NavHostController, modifier: Modifier) {
         navGraphBuilder.composable<SecondTabDestination> {
-            SecondTabScreen()
+            MatchesTabScreen()
         }
     }
 

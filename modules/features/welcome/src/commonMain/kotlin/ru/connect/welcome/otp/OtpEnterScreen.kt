@@ -42,6 +42,7 @@ import ru.connect.core.ui.buttons.ProgressButton
 import ru.connect.core.ui.extensions.maxFullScreenWidth
 import ru.connect.core.ui.snackbar.SnackBarComponent
 import ru.connect.core.ui.theme.ConnectTheme
+import ru.connect.main.common.MainGraphFeatureApi
 import ru.connect.profile.common.ProfileFeatureApi
 import ru.connect.welcome.screen.WelcomeFeatureScreenDestination
 
@@ -63,6 +64,15 @@ internal fun OtpEnterScreen(
                     popupToRoute = WelcomeFeatureScreenDestination,
                     options = {
                         inclusive = false
+                    },
+                )
+            )
+            OtpEnterNavigationTarget.MainScreen -> featureNavigator.navigate(
+                destination = MainGraphFeatureApi.Companion.MainGraphFeatureDestination,
+                popupOptions = PopupOptions(
+                    popupToRoute = WelcomeFeatureScreenDestination,
+                    options = {
+                        inclusive = true
                     },
                 )
             )

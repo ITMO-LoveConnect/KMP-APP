@@ -5,8 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserEditProfile(
-    val purpose: DatingPurpose,
+    val name: String,
+    val faculty: Faculty,
+    val gender: Gender,
+    val datingPurpose: DatingPurpose,
     val birthday: LocalDate,
     val tagsIds: List<String>,
-    val images: List<ByteArray>,
 )

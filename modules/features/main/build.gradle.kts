@@ -11,6 +11,7 @@ kotlin {
         commonMain.dependencies {
             implementation(project(":modules:core"))
             implementation(project(":modules:core-ui"))
+            implementation(project(":modules:domain"))
             implementation(project(":modules:core:navigation"))
             implementation(project(":modules:features:main:common"))
             implementation(project(":modules:features:feature1:common"))
