@@ -6,6 +6,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import ru.connect.core.ui.error.UiError
 import kotlin.coroutines.CoroutineContext
 
 /**
@@ -24,6 +26,11 @@ open class UdfViewModel<Ui, Nav>(
     val state = _state.asStateFlow()
 
     fun handleNavigation(navigate: (Nav) -> Unit) = _state.handleNavigation(navigate)
+
+    fun handleErrorAlertClose() = launch { _state.handleErrorAlertClose() }
+
+    fun showAlertError(error: UiError.SnackBar) = launch { _state.showAlertError(error) }
+    fun showAlertError(errors: List<UiError.SnackBar>) = launch { _state.showAlertError(errors) }
 
     override fun onCleared() {
         super.onCleared()

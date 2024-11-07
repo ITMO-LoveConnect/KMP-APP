@@ -5,4 +5,10 @@ include(
     ":modules:features:feature1:common",
     ":modules:features:feature2",
     ":modules:features:feature2:common",
+    ":modules:features:splash",
+    ":modules:features:splash:common",
+    ":modules:features:welcome",
+    ":modules:features:welcome:common",
+    ":modules:features:profile",
+    ":modules:features:profile:common",
 )

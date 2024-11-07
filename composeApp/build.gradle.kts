@@ -82,6 +82,8 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.stately.concurrency)
             implementation(libs.stately.concurrent.collections)
+            implementation("io.coil-kt.coil3:coil-compose:3.0.0")
+            implementation("io.coil-kt.coil3:coil-network-ktor3:3.0.0")
 
             // Modules
             implementation(project(":modules:core"))
@@ -95,6 +97,12 @@ kotlin {
             implementation(project(":modules:features:feature1:common"))
             implementation(project(":modules:features:feature2"))
             implementation(project(":modules:features:feature2:common"))
+            implementation(project(":modules:features:splash"))
+            implementation(project(":modules:features:splash:common"))
+            implementation(project(":modules:features:welcome"))
+            implementation(project(":modules:features:welcome:common"))
+            implementation(project(":modules:features:profile"))
+            implementation(project(":modules:features:profile:common"))
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

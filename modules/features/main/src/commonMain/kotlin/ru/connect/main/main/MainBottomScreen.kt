@@ -16,7 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import org.koin.compose.viewmodel.koinViewModel
 import ru.connect.core.ui.theme.ConnectTheme
-import ru.connect.main.main.first.FirstTabNavigationApi
+import ru.connect.main.main.first.LikeMathTabNavigationApi
 import ru.connect.main.main.models.BottomTabs
 import ru.connect.main.main.navigation.BottomNavGraph
 import ru.connect.main.main.second.SecondTabNavigationApi
@@ -32,7 +32,7 @@ internal fun MainBottomScreen(
     viewModel.handleNavigation { target ->
         when (target) {
             MainBottomNavigationTarget.FirstTabTarget -> navController.navigate(
-                FirstTabNavigationApi.Companion.FirstTabDestination,
+                LikeMathTabNavigationApi.Companion.LikeMathTabDestination,
                 navOptions = navOptions {
                     popUpTo(navController.graph.startDestinationRoute.orEmpty()) {
                         saveState = true

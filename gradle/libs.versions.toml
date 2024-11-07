@@ -18,6 +18,7 @@ kotlin = "2.0.21"
 kotlinx-coroutines = "1.9.0"
 kotlinxCoroutinesCore = "1.8.1"
 kotlinxDatetime = "0.6.1"
+multiplatformSettingsNoArgVersion = "1.2.0"
 navigationCompose = "2.8.0-alpha10"
 navigationRuntimeKtx = "2.8.3"
 kotlinJvm = "1.9.0"
@@ -74,6 +75,7 @@ ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negoti
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-js = { module = "io.ktor:ktor-client-js-js", version.ref = "ktor" }
 ktor-client-wasmJs = { module = "io.ktor:ktor-client-js-wasm-js", version.ref = "ktor" }
+russhwolf-multiplatform-settings-no-arg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettingsNoArgVersion" }
 stately-concurrency = { module = "co.touchlab:stately-concurrency", version.ref = "statelyConcurrency" }
 stately-concurrent-collections = { module = "co.touchlab:stately-concurrent-collections", version.ref = "statelyConcurrency" }
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }

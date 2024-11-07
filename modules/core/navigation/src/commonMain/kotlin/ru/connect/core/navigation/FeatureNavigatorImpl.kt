@@ -9,7 +9,7 @@ class FeatureNavigatorImpl(
     private val navController: NavHostController
 ) : FeatureNavigator {
 
-    override fun navigate(destination: String, popupOptions: PopupOptions?, launchSingleTop: Boolean) {
+    override fun navigate(destination: String, popupOptions: PopupOptions<String>?, launchSingleTop: Boolean) {
         navController.navigate(destination,
             navOptions = navOptions {
                 this.launchSingleTop = launchSingleTop
@@ -18,7 +18,7 @@ class FeatureNavigatorImpl(
         )
     }
 
-    override fun <T : Any> navigate(destination: T, popupOptions: PopupOptions?, launchSingleTop: Boolean) {
+    override fun <T : Any> navigate(destination: T, popupOptions: PopupOptions<T>?, launchSingleTop: Boolean) {
         navController.navigate(destination,
             navOptions = navOptions {
                 this.launchSingleTop = launchSingleTop

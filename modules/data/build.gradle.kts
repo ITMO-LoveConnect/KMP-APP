@@ -14,6 +14,7 @@ kotlin {
             api(libs.ktor.client.core)
             api(libs.ktor.client.content.negotiation)
             api(libs.ktor.serialization.json)
+            implementation(libs.russhwolf.multiplatform.settings.no.arg)
         }
         androidMain.dependencies {
             implementation(libs.ktor.client.okhttp)
